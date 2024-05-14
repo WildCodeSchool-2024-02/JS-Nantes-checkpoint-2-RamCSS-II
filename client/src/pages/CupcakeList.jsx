@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Cupcake from "../components/Cupcake";
@@ -6,7 +6,6 @@ import Cupcake from "../components/Cupcake";
 function CupcakeList() {
   const data = useLoaderData();
 
-  console.info(useLoaderData());
   console.info("ceci est data", data);
 
   // Step 3: get all accessories
@@ -16,8 +15,7 @@ function CupcakeList() {
     const reponse = fetch("HTTP://localhost:3310/api/accessories")
       .then((response) => response.json())
       .then((acceData) => setAccessories(acceData));
-    console.info("ceci est accessoire", accessories);
-    console.info("ceci est reponse", reponse);
+    console.info(reponse);
   }, []);
 
   // Step 5: create filter state
@@ -48,13 +46,15 @@ function CupcakeList() {
       <ul className="cupcake-list" id="cupcake-list">
         {(selectedAcc !== "---" ? filteredCupcake : data).map((el) => (
           <li className="cupcake-item" key={el.id}>
-            <Cupcake
-              name={el.name}
-              accessory={el.accessory}
-              color1={el.color1}
-              color2={el.color2}
-              color3={el.color3}
-            />
+            <NavLink to={`/cupcakes/${el.id}`}>
+              <Cupcake
+                name={el.name}
+                accessory={el.accessory}
+                color1={el.color1}
+                color2={el.color2}
+                color3={el.color3}
+              />
+            </NavLink>
           </li>
         ))}
 
@@ -67,6 +67,7 @@ function CupcakeList() {
 }
 
 Cupcake.propTypes = {
+  id: PropTypes.string.isRequired,
   data: PropTypes.shape({
     accessory: PropTypes.string.isRequired,
     color1: PropTypes.string.isRequired,
