@@ -45,6 +45,7 @@ function CupcakeList() {
   const accessoryEndpoint = "http://localhost:3310/api/accessories";
 
   const [accessories, setAccessories] = useState([]);
+
   console.warn(data);
 
   console.info(useLoaderData());
@@ -59,6 +60,10 @@ function CupcakeList() {
   }, []);
 
   // Step 5: create filter state
+  const [selectedAccessory, setselectedAccessory] = useState(" ");
+  const handleFilter = (event) => {
+    setselectedAccessory(event.target.value);
+  };
 
   return (
     <>
@@ -67,7 +72,7 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select id="cupcake-select" onChange={(event) => handleFilter(event)}>
             <option value="">-Select-</option>
             {/* Step 4: add an option for each accessory */}
             {accessories.map((accessory) => (
@@ -79,12 +84,18 @@ function CupcakeList() {
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
         {/* Step 5: filter cupcakes before repeating */}
-
-        {data.map((el) => (
-          <li className="cupcake-item" key={el.id}>
-            <Cupcake />
-          </li>
-        ))}
+        {data
+          .filter((el) => {
+            if (selectedAccessory) {
+              return el.accessory === selectedAccessory.toLowerCase();
+            }
+            return true;
+          })
+          .map((filteredEl) => (
+            <li className="cupcake-item" key={filteredEl.id}>
+              <Cupcake />
+            </li>
+          ))}
 
         {/* end of block */}
       </ul>
