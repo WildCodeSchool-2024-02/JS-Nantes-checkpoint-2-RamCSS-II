@@ -50,7 +50,10 @@ function CupcakeList() {
     .then((accessoires) => console.info("API accessoires", accessoires))
   }, [])
 
-  // Step 5: create filter state
+
+  const options = ["Cherry", "Donut", "Chocolate", "Wild", "Christmas Candy"]
+
+    // Step 5: create filter state
 
   return (
     <>
@@ -62,6 +65,11 @@ function CupcakeList() {
           <select id="cupcake-select">
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
+            {options.map((option) => (
+                <option key={option}>
+                  {option}
+                </option>
+            ))}
           </select>
         </label>
       </form>
