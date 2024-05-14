@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
 
 function CupcakeList() {
@@ -42,7 +42,9 @@ function CupcakeList() {
           )
           .map((cupcake) => (
             <li key={cupcake.id} className="cupcake-item">
-              <Cupcake data={cupcake} />
+              <Link to={`/cupcakes/${cupcake.id}`}>
+                <Cupcake data={cupcake} />
+              </Link>
             </li>
           ))}
       </ul>
