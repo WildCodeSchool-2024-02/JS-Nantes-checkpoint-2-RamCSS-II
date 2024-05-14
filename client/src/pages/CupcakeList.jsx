@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-// import {useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Cupcake from "../components/Cupcake";
 
@@ -8,11 +8,17 @@ function CupcakeList() {
 
   console.info(useLoaderData());
   console.info("ceci est data", data);
-  // const [accessories, setAccessories] = useState([]);
 
-  // useEffect(() => {
-  //  const reponse = fetch("HTTP://localhost:3310/api/accessories")
-  // })
+  const [accessories, setAccessories] = useState([]);
+
+  useEffect(() => {
+   const reponse = fetch("HTTP://localhost:3310/api/accessories")
+   .then(response => response.json())
+   .then(acceData => setAccessories(acceData))
+   console.info("ceci est accessoire",accessories)
+   console.info("ceci est reponse", reponse)
+  }, [])
+
 
   // Step 3: get all accessories
 
@@ -27,7 +33,8 @@ function CupcakeList() {
           Filter by{" "}
           <select id="cupcake-select">
             <option value="">---</option>
-            {/* Step 4: add an option for each accessory */}
+            {accessories.map((el) => (
+              <option key={el.id}>{el.name}</option>))/* Step 4: add an option for each accessory */}
           </select>
         </label>
       </form>
