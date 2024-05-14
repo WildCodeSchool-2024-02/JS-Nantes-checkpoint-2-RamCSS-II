@@ -40,30 +40,30 @@ someCupcakes.push(
 
 function CupcakeList() {
   const [isLoading, setIsLoading] = useState(true);
-  const [dataAccessoir, setDataAccessoir] = useState();
-
+  const [dataAccessoir, setDataAccessoir] = useState([]);
+  
   // Step 1: get all cupcakes
   // console.info(useLoaderData());
-
+  
   const data = useLoaderData();
-
+  
   // Step 3: get all accessories
   useEffect(() => {
     fetch("http://localhost:3310/api/accessories")
-      .then((response) => response.json())
-      .then((dataAccessoirs) => {
-        setDataAccessoir(dataAccessoirs);
-        setIsLoading(false);
-      });
+    .then((response) => response.json())
+    .then((dataAccessoirs) => {
+      setDataAccessoir(dataAccessoirs);
+      setIsLoading(false);
+    });
   }, []);
-  // 4. Setting *dogImage* to the image url that we received from the response above
-
+  
   // Step 5: create filter state
-  const [accessoir, setAccessoir] = useState("");
+  const [accessoir, setAccessoir] = useState([]);
   const selectChange = (event) => {
     setAccessoir(event.target.value);
   };
 
+  
   return isLoading ? (
     <h1>en chargement</h1>
   ) : (
@@ -101,9 +101,9 @@ function CupcakeList() {
         {data
           .filter((acc) => acc.accessory.includes(accessoir))
           .map((e) => (
-            <li key={e.id} id={e.id} className="cupcake-item">
-              <NavLink to={`/details:id${e.id}`}>
-                <Cupcake accessoir={data.id} />
+            <li key={e} id={e.id} className="cupcake-item">
+              <NavLink to={`/details/${e.id}`}>
+                <Cupcake data={e} />
               </NavLink>
             </li>
           ))}

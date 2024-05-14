@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/details:id",
+        path: "/details/:id",
         element: <CupcakeDetails />,
 
         // !le chemin id ne renvoi pas sur le composant mais sur le chemin composent+id qui n'existe donc pas. Probleme de parametre dynamique dans react rooter
