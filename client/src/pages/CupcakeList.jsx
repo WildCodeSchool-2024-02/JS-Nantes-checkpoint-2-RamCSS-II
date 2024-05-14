@@ -39,7 +39,8 @@ someCupcakes.push(
 
 function CupcakeList() {
   // Step 1: get all cupcakes
-  console.info(useLoaderData());
+  const data = useLoaderData();
+  console.info(data);
 
   // Step 3: get all accessories
 
@@ -60,10 +61,13 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
+        {data.map((el) => (
+          <li className="cupcake-item" key={el.id}>
+            <Cupcake data={el} key={el.id} />
+          </li>
+        ))}
         {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
-          <Cupcake />
-        </li>
+
         {/* end of block */}
       </ul>
     </>
