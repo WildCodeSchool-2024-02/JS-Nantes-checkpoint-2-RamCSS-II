@@ -1,47 +1,18 @@
 import { useLoaderData } from "react-router-dom";
+// import {useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import Cupcake from "../components/Cupcake";
-
-/* ************************************************************************* */
-const someCupcakes = [];
-someCupcakes.push(
-  {
-    id: 10,
-    accessory_id: "4",
-    accessory: "wcs",
-    color1: "blue",
-    color2: "white",
-    color3: "red",
-    name: "France",
-  },
-  {
-    id: 11,
-    accessory_id: "4",
-    accessory: "wcs",
-    color1: "yellow",
-    color2: "red",
-    color3: "black",
-    name: "Germany",
-  },
-  {
-    id: 27,
-    accessory_id: "5",
-    accessory: "christmas-candy",
-    color1: "yellow",
-    color2: "blue",
-    color3: "blue",
-    name: "Sweden",
-  }
-);
-
-/* you can use someCupcakes if you're stucked on step 1 */
-/* if you're fine with step 1, just ignore this ;) */
-/* ************************************************************************* */
 
 function CupcakeList() {
   const data = useLoaderData();
 
   console.info(useLoaderData());
   console.info("ceci est data", data);
+  // const [accessories, setAccessories] = useState([]);
+
+  // useEffect(() => {
+  //  const reponse = fetch("HTTP://localhost:3310/api/accessories")
+  // })
 
   // Step 3: get all accessories
 
@@ -61,15 +32,44 @@ function CupcakeList() {
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
-        {/* Step 2: repeat this block for each cupcake */}
+        {data.map((el) => (
+          <li className="cupcake-item" key={el.id}>
+            <Cupcake
+              name={el.name}
+              accessory={el.accessory}
+              color1={el.color1}
+              color2={el.color2}
+              color3={el.color3}
+            />
+          </li>
+        ))}
+
         {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
-          <Cupcake />
-        </li>
+
         {/* end of block */}
       </ul>
     </>
   );
 }
+
+Cupcake.propTypes = {
+  data: PropTypes.shape({
+    accessory: PropTypes.string.isRequired,
+    color1: PropTypes.string.isRequired,
+    color2: PropTypes.string.isRequired,
+    color3: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
+};
+
+Cupcake.defaultProps = {
+  data: {
+    accessory: "donut",
+    color1: "var(--default-cream-color)",
+    color2: "var(--default-cream-color)",
+    color3: "var(--default-cream-color)",
+    name: "",
+  },
+};
 
 export default CupcakeList;
