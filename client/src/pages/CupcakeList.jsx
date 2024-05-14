@@ -61,7 +61,7 @@ function CupcakeList() {
       });
   }, []);
   // Step 5: create filter state
-  // console.log(dataAccessories)
+
   return (
     <>
 
@@ -83,7 +83,7 @@ function CupcakeList() {
         {data &&
           data.map((el) =>
             <li className="cupcake-item" key={el.id}>
-              <Cupcake key={el.id} />
+              <Cupcake data={el} key={el.id} />
             </li>
           )}
         {/* end of block */}
