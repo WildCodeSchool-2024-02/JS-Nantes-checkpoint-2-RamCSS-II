@@ -1,7 +1,9 @@
-import {useParams} from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { useEffect, useState } from "react";
 // eslint-disable-next-line import/extensions
 import Cupcake from "../components/Cupcake.jsx";
+
+import "./Home.css";
 
 function CupcakeDetails() {
     const { id } = useParams();
@@ -18,15 +20,19 @@ function CupcakeDetails() {
     }
 
     return (
-        <div className="cupcake">
-            <h1>Cupcake Details {id}</h1>
+    <>
+        <h1>Cupcake Details {id}</h1>
+        <div className="home-cupcake">
             <Cupcake data={cupcakeDetails} />
+        </div>
+        <div className="home-content">
             <p>Color 1: {cupcakeDetails.color1}</p>
             <p>Color 2: {cupcakeDetails.color2}</p>
             <p>Color 3: {cupcakeDetails.color3}</p>
             <p>Accessory: {cupcakeDetails.accessory}</p>
         </div>
-    )
+    </>
+)
 }
 
 export default CupcakeDetails;
