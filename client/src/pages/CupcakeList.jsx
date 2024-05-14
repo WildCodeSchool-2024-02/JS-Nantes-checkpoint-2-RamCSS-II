@@ -38,8 +38,10 @@ someCupcakes.push(
 /* ************************************************************************* */
 
 function CupcakeList() {
-  // Step 1: get all cupcakes
+  const data = useLoaderData();
+
   console.info(useLoaderData());
+  console.info("ceci est data", data);
 
   // Step 3: get all accessories
 
