@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -39,6 +40,8 @@ someCupcakes.push(
 
 function CupcakeList() {
   // Step 1: get all cupcakes
+  // const data = useLoaderData()
+
   console.info(useLoaderData());
 
   // Step 3: get all accessories
@@ -47,6 +50,8 @@ function CupcakeList() {
 
   return (
     <>
+
+
       <h1>My cupcakes</h1>
       <form className="center">
         <label htmlFor="cupcake-select">

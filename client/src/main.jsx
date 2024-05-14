@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
@@ -25,10 +24,11 @@ const router = createBrowserRouter([
       {
         path: "/cupcakes",
         element: <CupcakeList />,
-        // Step 1: load data here
-      },
-    ],
-  },
+        index: true,
+        Loader: async () => fetch("localhost:3310/api/cupcakes").json(),
+      }]
+    // Step 1: load data here
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
