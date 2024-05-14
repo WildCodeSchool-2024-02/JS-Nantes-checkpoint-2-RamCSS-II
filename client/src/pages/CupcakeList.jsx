@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
 
@@ -44,6 +44,8 @@ function CupcakeList() {
   console.info("API cupckaes", data);
 
   // Step 3: get all accessories
+  // const [accessory, setAccessory] = useState([])
+
   useEffect(() => {
     fetch("http://localhost:3310/api/accessories")
     .then((response) => response.json())
@@ -54,6 +56,7 @@ function CupcakeList() {
   const options = ["Cherry", "Donut", "Chocolate", "Wild", "Christmas Candy"]
 
     // Step 5: create filter state
+  const [filter, setFilter] = useState("");
 
   return (
     <>
@@ -62,7 +65,9 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select id="cupcake-select" value={filter} onChange={(event) => {
+            setFilter(event.target.value)
+          }}>
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
             {options.map((option) => (
@@ -75,16 +80,21 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
-        {data.map((item) => (
-          <li key={item.id}>
-            <Cupcake data={item} />
+        {/* Step 5: filter cupcakes before repeating */}
+        <p>Option selected is {filter}</p>
+        {data
+        // .accessory.filter((item) => (
+        //   item.toLowerCase().includes(filter)
+        // ))        
+        .map((item) => (
+          <li key={item.id} className="cupcake-item">
+            <Cupcake data={item} filter={filter}/>
           </li>
         ))}
         
-        {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
+        {/* <li className="cupcake-item">
           <Cupcake />
-        </li>
+        </li> */}
         {/* end of block */}
       </ul>
     </>
