@@ -43,7 +43,7 @@ function CupcakeList() {
   const data = useLoaderData();
 
   const accessoryEndpoint = "http://localhost:3310/api/accessories";
-  // eslint-disable-next-line no-unused-vars
+
   const [accessories, setAccessories] = useState([]);
   console.warn(data);
 
@@ -68,8 +68,11 @@ function CupcakeList() {
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
           <select id="cupcake-select">
-            <option value="">---</option>
+            <option value="">-Select-</option>
             {/* Step 4: add an option for each accessory */}
+            {accessories.map((accessory) => (
+              <option key={accessory.id}>{accessory.name}</option>
+            ))}
           </select>
         </label>
       </form>
