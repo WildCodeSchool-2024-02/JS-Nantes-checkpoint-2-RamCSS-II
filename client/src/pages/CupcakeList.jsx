@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Cupcake from "../components/Cupcake";
 
@@ -9,37 +9,44 @@ function CupcakeList() {
   console.info(useLoaderData());
   console.info("ceci est data", data);
 
+  // Step 3: get all accessories
   const [accessories, setAccessories] = useState([]);
 
   useEffect(() => {
-   const reponse = fetch("HTTP://localhost:3310/api/accessories")
-   .then(response => response.json())
-   .then(acceData => setAccessories(acceData))
-   console.info("ceci est accessoire",accessories)
-   console.info("ceci est reponse", reponse)
-  }, [])
-
-
-  // Step 3: get all accessories
+    const reponse = fetch("HTTP://localhost:3310/api/accessories")
+      .then((response) => response.json())
+      .then((acceData) => setAccessories(acceData));
+    console.info("ceci est accessoire", accessories);
+    console.info("ceci est reponse", reponse);
+  }, []);
 
   // Step 5: create filter state
+  const [selectedAcc, setSelectedAcc] = useState("---");
+
+  const filteredCupcake = data.filter((el) => el.accessory_id === selectedAcc);
+  console.info("ceci est selectedAcc", selectedAcc);
 
   return (
     <>
       <h1>My cupcakes</h1>
       <form className="center">
         <label htmlFor="cupcake-select">
-          {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
-            <option value="">---</option>
+          <select
+            id="cupcake-select"
+            onChange={(e) => setSelectedAcc(e.target.value)}
+          >
+            <option>---</option>
             {accessories.map((el) => (
-              <option key={el.id}>{el.name}</option>))/* Step 4: add an option for each accessory */}
+              <option key={el.id} value={el.id}>
+                {el.name}
+              </option>
+            ))}
           </select>
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
-        {data.map((el) => (
+        {(selectedAcc !== "---" ? filteredCupcake : data).map((el) => (
           <li className="cupcake-item" key={el.id}>
             <Cupcake
               name={el.name}
