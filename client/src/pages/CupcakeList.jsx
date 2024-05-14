@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -39,6 +40,7 @@ someCupcakes.push(
 /* ************************************************************************* */
 
 function CupcakeList() {
+  // {id} was in parameter of CupcakeList function but removed for eslint
   const data = useLoaderData();
   // Step 1: get all cupcakes
   console.info("API cupckaes", data);
@@ -53,7 +55,7 @@ function CupcakeList() {
   }, [])
 
 
-  const options = ["Cherry", "Donut", "Chocolate", "Wild", "Christmas Candy"]
+  const options = ["cherry", "donut", "chocolate", "wild", "christmas-candy"]
 
     // Step 5: create filter state
   const [filter, setFilter] = useState("");
@@ -78,25 +80,23 @@ function CupcakeList() {
           </select>
         </label>
       </form>
+      {/* <Link to={`/cupcakes/${id}`} > */} 
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
         {/* Step 5: filter cupcakes before repeating */}
         <p>Option selected is {filter}</p>
         {data
         // .accessory.filter((item) => (
-        //   item.toLowerCase().includes(filter)
+        //   item.data.includes(filter)
         // ))        
         .map((item) => (
           <li key={item.id} className="cupcake-item">
-            <Cupcake data={item} filter={filter}/>
+            <Cupcake data={item} filter={filter} />
           </li>
         ))}
-        
-        {/* <li className="cupcake-item">
-          <Cupcake />
-        </li> */}
         {/* end of block */}
       </ul>
+      {/* </Link> */}
     </>
   );
 }
