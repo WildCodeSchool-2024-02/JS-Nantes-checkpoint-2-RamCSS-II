@@ -43,22 +43,18 @@ function CupcakeList() {
   console.info("étape 1", useLoaderData());
   const cupcake = [useLoaderData()];
 
-  // console.log("test",cupcake)
-
   // Step 3: get all accessories
 
-  const [accessories, setAccessories] = useState(null);
+  const [accessories, setAccessories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/accessories")
+    fetch(" http://localhost:3310/api/accessories ")
       .then((response) => response.json())
       .then((data) => setAccessories(data));
   }, []);
 
   console.info("étape 3", setAccessories);
- const contournementDuChiendegarde=accessories;
- function contournement (){return contournementDuChiendegarde}
- contournement();
+
   // Step 5: create filter state
 
   return (
@@ -71,6 +67,11 @@ function CupcakeList() {
           <select id="cupcake-select">
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
+            {accessories.map((value) => (
+              <option key={value.id} value={value.id}>
+                {value.name}
+              </option>
+            ))}
           </select>
         </label>
       </form>
