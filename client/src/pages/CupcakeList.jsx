@@ -1,7 +1,9 @@
 import { useLoaderData } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
+
 const someCupcakes = [];
 someCupcakes.push(
   {
@@ -39,9 +41,29 @@ someCupcakes.push(
 
 function CupcakeList() {
   // Step 1: get all cupcakes
-  console.info(useLoaderData());
+
+  // J'AI UN PEU GALERER A RECUPERER LES DONNEES DE MON FETCH, MAIS J'ARRIVAIS A VISUALISER MON CONSOLE.INFO, j'ai du supprimer le defer des imports pour faire mon commit
+  console.info("STEP1", useLoaderData());
 
   // Step 3: get all accessories
+
+    const [accessories, setAccessories] = useState([]);
+  
+    useEffect(() => {
+      const fetchAccessories = async () => {
+        try {
+          const response = await fetch('http://localhost:3310/api/accessories');
+          const data = await response.json();
+          setAccessories(data);
+          console.info('Accessories:', data);
+        } catch (error) {
+          console.error('Error fetching accessories:', error);
+        }
+      };
+      fetchAccessories();
+    }, []);
+
+    console.info(accessories)
 
   // Step 5: create filter state
 
@@ -60,6 +82,14 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
+
+        {someCupcakes.map((cupcakeData) => (
+          <Cupcake 
+          key={cupcakeData.id}
+          accessory_id={cupcakeData.accessory_id}
+          />
+        ))}
+
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
           <Cupcake />
