@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, defer, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 
@@ -27,12 +27,12 @@ const router = createBrowserRouter([
         element: <CupcakeList />,
         // Step 1: load data here
 
-        // loader: async ({ request, params }) => {
-        //   const response = await fetch('http://localhost:3310/api/cupcakes')
-        //   return defer({
-        //     results: response.json()
-        //   })
-        // }
+        loader: async () => {
+          const response = await fetch('http://localhost:3310/api/cupcakes')
+          return defer({
+            results: response.json()
+          })
+        }
       },
     ],
   },
