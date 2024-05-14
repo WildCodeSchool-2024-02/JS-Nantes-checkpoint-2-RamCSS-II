@@ -1,15 +1,9 @@
 import PropTypes from "prop-types";
-import { useLoaderData } from "react-router-dom";
+
 
 import "./Cupcake.css";
 
 function Cupcake({ data }) {
-  const cupcakesData = useLoaderData();
-  console.info(cupcakesData)
-
-
-
-
   return (
     <div className="cupcake-container">
       <div className="cupcake">
