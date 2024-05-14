@@ -99,7 +99,7 @@ function CupcakeList() {
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
           <select id="cupcake-select" onChange={selectAccessory}>
-            <option value="" disabled>--- choose accessory ---</option>
+            <option value="" selected disabled>--- choose accessory ---</option>
 
             {/* Step 4: add an option for each accessory */}
             {accessories.map((accessory) => (
