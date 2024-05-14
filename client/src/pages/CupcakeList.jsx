@@ -40,6 +40,8 @@ someCupcakes.push(
 function CupcakeList() {
   // Step 1: get all cupcakes
   console.info(useLoaderData());
+  const data = useLoaderData();
+  console.info('%c⧭', 'color: #00e600', data);
 
   // Step 3: get all accessories
 
