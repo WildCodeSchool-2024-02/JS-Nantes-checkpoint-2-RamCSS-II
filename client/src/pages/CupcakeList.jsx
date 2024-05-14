@@ -75,8 +75,15 @@ function CupcakeList() {
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
           <select id="cupcake-select">
-            <option value="">---</option>
+            <option value="" disabled>--- choose accessory ---</option>
+            
             {/* Step 4: add an option for each accessory */}
+            {accessories.map((accessory) => (
+              <option value="" 
+              key={accessory.id}>
+                {accessory.name}
+              </option>
+            ))}
           </select>
         </label>
       </form>
@@ -91,9 +98,9 @@ function CupcakeList() {
         ))}
 
         {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
+        {/* <li className="cupcake-item">
           <Cupcake />
-        </li>
+        </li> */}
         {/* end of block */}
       </ul>
     </>
