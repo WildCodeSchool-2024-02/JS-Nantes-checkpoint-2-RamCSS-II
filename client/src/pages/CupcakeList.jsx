@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -45,13 +45,27 @@ function CupcakeList() {
   console.info(useLoaderData());
 
   // Step 3: get all accessories
+  const [dataAccessories, setdataAccessories] = useState();
 
+  useEffect(() => {
+    fetch("localhost:3310/api/accessories")
+      .then((response) => response.json())
+      .then((resdataAccessories) => {
+        setdataAccessories(resdataAccessories);
+      })
+      .catch((error) => {
+        console.error(
+          "Une erreur s'est produite lors de la récupération des données:",
+          error
+        );
+      });
+  }, []);
   // Step 5: create filter state
-
+  // console.log(dataAccessories)
   return (
     <>
 
-
+      <p>{dataAccessories}</p>
       <h1>My cupcakes</h1>
       <form className="center">
         <label htmlFor="cupcake-select">
