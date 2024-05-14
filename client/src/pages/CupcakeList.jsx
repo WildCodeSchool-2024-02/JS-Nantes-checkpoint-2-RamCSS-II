@@ -52,7 +52,8 @@ function CupcakeList() {
 
   // Step 5: create filter state
 
-  return (
+    const cupcakes = useLoaderData();
+    return (
     <>
       <h1>My cupcakes</h1>
       <form className="center">
@@ -68,9 +69,11 @@ function CupcakeList() {
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
         {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
-          <Cupcake />
-        </li>
+          {cupcakes.map(cupcake => (
+              <li key={cupcake.id} className="cupcake-item">
+                  <Cupcake data={cupcake} />
+              </li>
+          ))}
         {/* end of block */}
       </ul>
     </>
