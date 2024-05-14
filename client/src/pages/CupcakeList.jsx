@@ -53,9 +53,25 @@ function CupcakeList() {
       .then((data) => setAccessories(data));
   }, []);
 
-  console.info("étape 3", setAccessories);
+  console.info("étape 3", accessories);
 
   // Step 5: create filter state
+  function handleChange(e) {
+
+   const accessorieId = e.target.value;
+   // names.filter(name => name.includes('J')).map(filteredName =>
+   cupcake.filter(cupcakes => cupcakes.includes(accessorieId)).map(filteredid => (
+console.info("test filtre",filteredid)
+  ))
+
+  console.info("valeur étape 5 =>",accessorieId)
+}
+
+
+
+
+
+
 
   return (
     <>
@@ -64,7 +80,7 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select id="cupcake-select" onChange={handleChange}>
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
             {accessories.map((value) => (
