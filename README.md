@@ -51,3 +51,107 @@ npm run dev
 ```
 
 Et ouvre l'adresse http://localhost:3000/
+
+fetch('http://localhost:3310/api/cupcakes')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error fetching cupcakes:', error));
+Promise {<pending>}
+[[Prototype]]
+: 
+Promise
+[[PromiseState]]
+: 
+"fulfilled"
+[[PromiseResult]]
+: 
+undefined
+VM28:3 
+(27) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+0
+: 
+{id: 1, accessory_id: '3', accessory: 'chocolate', color1: 'red', color2: 'white', …}
+1
+: 
+{id: 2, accessory_id: '3', accessory: 'chocolate', color1: 'black', color2: 'yellow', …}
+2
+: 
+{id: 3, accessory_id: '1', accessory: 'cherry', color1: 'red', color2: 'green', …}
+3
+: 
+{id: 4, accessory_id: '1', accessory: 'cherry', color1: 'red', color2: 'white', …}
+4
+: 
+{id: 5, accessory_id: '3', accessory: 'chocolate', color1: 'white', color2: 'white', …}
+5
+: 
+{id: 6, accessory_id: '1', accessory: 'cherry', color1: 'red', color2: 'blue', …}
+6
+: 
+{id: 7, accessory_id: '5', accessory: 'christmas-candy', color1: 'red', color2: 'red', …}
+7
+: 
+{id: 8, accessory_id: '2', accessory: 'donut', color1: 'white', color2: 'black', …}
+8
+: 
+{id: 9, accessory_id: '5', accessory: 'christmas-candy', color1: 'white', color2: 'white', …}
+9
+: 
+{id: 10, accessory_id: '4', accessory: 'wcs', color1: 'blue', color2: 'white', …}
+10
+: 
+{id: 11, accessory_id: '4', accessory: 'wcs', color1: 'yellow', color2: 'red', …}
+11
+: 
+{id: 12, accessory_id: '2', accessory: 'donut', color1: 'white', color2: 'blue', …}
+12
+: 
+{id: 13, accessory_id: '1', accessory: 'cherry', color1: 'red', color2: 'white', …}
+13
+: 
+{id: 14, accessory_id: '1', accessory: 'cherry', color1: 'orange', color2: 'white', …}
+14
+: 
+{id: 15, accessory_id: '2', accessory: 'donut', color1: 'red', color2: 'white', …}
+15
+: 
+{id: 16, accessory_id: '2', accessory: 'donut', color1: 'red', color2: 'white', …}
+16
+: 
+{id: 17, accessory_id: '1', accessory: 'cherry', color1: 'yellow', color2: 'green', …}
+17
+: 
+{id: 18, accessory_id: '2', accessory: 'donut', color1: 'red', color2: 'white', …}
+18
+: 
+{id: 19, accessory_id: '2', accessory: 'donut', color1: 'red', color2: 'red', …}
+19
+: 
+{id: 20, accessory_id: '5', accessory: 'christmas-candy', color1: 'red', color2: 'white', …}
+20
+: 
+{id: 21, accessory_id: '1', accessory: 'cherry', color1: 'white', color2: 'white', …}
+21
+: 
+{id: 22, accessory_id: '4', accessory: 'wcs', color1: 'red', color2: 'red', …}
+22
+: 
+{id: 23, accessory_id: '2', accessory: 'donut', color1: 'red', color2: 'yellow', …}
+23
+: 
+{id: 24, accessory_id: '2', accessory: 'donut', color1: 'white', color2: 'blue', …}
+24
+: 
+{id: 25, accessory_id: '3', accessory: 'chocolate', color1: 'white', color2: 'blue', …}
+25
+: 
+{id: 26, accessory_id: '4', accessory: 'wcs', color1: 'red', color2: 'yellow', …}
+26
+: 
+{id: 27, accessory_id: '5', accessory: 'christmas-candy', color1: 'yellow', color2: 'blue', …}
+length
+: 
+27
+[[Prototype]]
+: 
+Array(0)
